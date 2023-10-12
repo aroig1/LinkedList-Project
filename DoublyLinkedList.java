@@ -40,7 +40,9 @@ public class DoublyLinkedList {
     public void deleteHead() {
         if (!this.isEmpty()) {
             head = head.next;
-            head.prev = null;
+            if (this.head != null) {
+                head.prev = null;
+            }
         }
     }
 
