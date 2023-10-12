@@ -39,12 +39,12 @@ public class LinkedListTest {
     public void searchElement(int data) {
         int index = simpleLinkedList.search(data);
         int index2 = doublyLinkedList.search(data);
-        if (index <= 0 && index2 <= 0) {
+        if (index < 0 && index2 < 0) {
             System.out.println("\nAn element with value " + data + " was not found.");
         }
         else {
             System.out.println("\nThe element with value " + data + " is at the index " + index + " in the simply linked list.");
-            System.out.println("\nThe element with value " + data + " is at the index " + index2 + " in the doubly linked list.");
+            System.out.println("The element with value " + data + " is at the index " + index2 + " in the doubly linked list.");
         }
     }
 

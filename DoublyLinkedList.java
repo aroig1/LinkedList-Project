@@ -57,17 +57,25 @@ public class DoublyLinkedList {
         Node tempNode = head;
 
         if (!this.isEmpty()) {
-            if (head.data == data) {
+            if (head.data == data && head.next != null) { // removing first element
                 head = head.next;
                 head.prev = null;
                 return;
             }
+            else if (head.data == data && head.next == null) { // removing only element
+                head = null;
+                return;
+            }
             while (tempNode.next != null) {
                 tempNode = tempNode.next;
-                if (tempNode.data == data) {
+                if (tempNode.data == data && tempNode.next != null) { // Removing middle elements
                     tempNode.prev.next = tempNode.next;
                     tempNode.next.prev = tempNode.prev;
                     return;
+                }
+                else if (tempNode.data == data && tempNode.next == null) { // Removing last element
+                    tempNode.prev.next = null;
+                    tail = tempNode.prev;
                 }
             }
 

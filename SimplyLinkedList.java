@@ -43,55 +43,54 @@ public class SimplyLinkedList {
 
     // Method to delete the tail
     public void deleteTail() {
-        Node tempNode = this.head;
-        int count = 0;
+        Node prevNode = this.head;
+        Node currNode;
 
         if (!this.isEmpty()) {
-            while (tempNode.next != null) {
-                tempNode = tempNode.next;
-                ++count;
+            if (prevNode.next == null) {
+                prevNode = null;
+                return;
             }
-            tempNode = this.head;
-            for (int i = 0; i < count - 1; ++i) {
-                tempNode = tempNode.next;
+
+            currNode = this.head.next;
+
+            while (currNode.next != null) {
+                prevNode = currNode;
+                currNode = currNode.next;
             }
-            tempNode.next = null;
+            
+            prevNode.next = null;
         }
     }
 
     // Method to delete a node with the given value
     public void delete(int data) {
-        Node tempNode = this.head;
-        int count = 0;
-        boolean dataFound = false;
+        Node prevNode = this.head;
+        Node currNode;
 
         if (!this.isEmpty()) {
-            if (this.head.data == data && this.head.next != null) {
-                this.head = this.head.next;
+            if (head.data == data) { // Removing first element
+                head = head.next;
+                return;
             }
-            else if (this.head.data == data && this.head.next == null) {
-                this.head = null;
+
+            currNode = prevNode.next;
+
+            if (currNode.data == data) { // Removing second element
+                prevNode.next = currNode.next;
+                return;
             }
-            else {
-                while (tempNode.next != null) {
-                    tempNode = tempNode.next;
-                    ++count;
-                    if (tempNode.data == data) {
-                        dataFound = true;
-                        break;
-                    }
-                }
-                if (dataFound) {
-                    tempNode = this.head;
-                    for (int i = 0; i < count - 1; ++i) {
-                        tempNode = tempNode.next;
-                    }
-                    tempNode.next = tempNode.next.next;
-                }
-                else {
-                    System.out.println("\nDelete Failed. Element with value " + data + " was not found.");
+
+            while (currNode.next != null) { // Removing all other elements
+                prevNode = currNode;
+                currNode = currNode.next;
+                if (currNode.data == data) {
+                    prevNode.next = currNode.next;
+                    return;
                 }
             }
+
+            System.out.println("\nDelete Failed. Element with value " + data + " was not found.");
         }
     }
 
@@ -101,7 +100,7 @@ public class SimplyLinkedList {
         int count = 0;
 
         if (!this.isEmpty()) {
-            if (tempNode.data == data) {
+            if (head.data == data) {
                 return count;
             }
             while (tempNode.next != null) {
