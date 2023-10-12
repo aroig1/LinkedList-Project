@@ -43,6 +43,9 @@ public class DoublyLinkedList {
             if (this.head != null) {
                 head.prev = null;
             }
+            else {
+                tail = head;
+            }
         }
     }
 
@@ -50,7 +53,12 @@ public class DoublyLinkedList {
     public void deleteTail() {
         if (!this.isEmpty()) {
             tail = tail.prev;
-            tail.next = null;
+            if (tail != null) {
+                tail.next = null;
+            }
+            else {
+                head = tail;
+            }
         }
     }
 
@@ -134,7 +142,7 @@ public class DoublyLinkedList {
     }
 
     public boolean isEmpty() {
-        if (head == null) {
+        if (head == null && tail == null) {
             System.out.println("This Doubly Linked List is Empty");
             return true;
         }
