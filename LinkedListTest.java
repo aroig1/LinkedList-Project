@@ -15,6 +15,7 @@ public class LinkedListTest {
     public void insertElements(int[] n) {
         for (int i = 0; i < n.length; ++i) {
             simpleLinkedList.insert(n[i]);
+            doublyLinkedList.insert(n[i]);
         }
     }
 
@@ -22,29 +23,36 @@ public class LinkedListTest {
         switch(option) {
             case 1:
                 simpleLinkedList.deleteHead();
+                doublyLinkedList.deleteHead();
                 break;
             case 2:
                 simpleLinkedList.deleteTail();
+                doublyLinkedList.deleteTail();
                 break;
             case 3:
                 simpleLinkedList.delete(data);
+                doublyLinkedList.delete(data);
                 break;
         }
     }
 
     public void searchElement(int data) {
         int index = simpleLinkedList.search(data);
-        if (index <= 0) {
+        int index2 = doublyLinkedList.search(data);
+        if (index <= 0 && index2 <= 0) {
             System.out.println("\nAn element with value " + data + " was not found.");
         }
         else {
             System.out.println("\nThe element with value " + data + " is at the index " + index + " in the simply linked list.");
+            System.out.println("\nThe element with value " + data + " is at the index " + index2 + " in the doubly linked list.");
         }
     }
 
     public void traverseAndPrint() {
         System.out.println();
         simpleLinkedList.traverse();
+        doublyLinkedList.forwardTraversal();
+        doublyLinkedList.backwardTraversal();
     }
 
     public void printOptions() {
