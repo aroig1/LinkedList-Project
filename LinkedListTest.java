@@ -13,46 +13,103 @@ public class LinkedListTest {
     }
 
     public void insertElements(int[] n) {
+        long start, end;
+        
+        start = System.nanoTime();
         for (int i = 0; i < n.length; ++i) {
             simpleLinkedList.insert(n[i]);
+        }
+        end = System.nanoTime();
+        System.out.println("Simple - Elapsed Time: " + (end - start) + " ns");
+
+        start = System.nanoTime();
+        for (int i = 0; i < n.length; ++i) {
             doublyLinkedList.insert(n[i]);
         }
+        end = System.nanoTime();
+        System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
     }
 
     public void deleteElement(int option, int data) {
+        long start, end;
+
         switch(option) {
             case 1:
+                start = System.nanoTime();
                 simpleLinkedList.deleteHead();
+                end = System.nanoTime();
+                System.out.println("\nSimple - Elapsed Time: " + (end - start) + " ns");
+
+                start = System.nanoTime();
                 doublyLinkedList.deleteHead();
+                end = System.nanoTime();
+                System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
                 break;
             case 2:
+                start = System.nanoTime();
                 simpleLinkedList.deleteTail();
+                end = System.nanoTime();
+                System.out.println("\nSimple - Elapsed Time: " + (end - start) + " ns");
+
+                start = System.nanoTime();
                 doublyLinkedList.deleteTail();
+                end = System.nanoTime();
+                System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
                 break;
             case 3:
+                start = System.nanoTime();
                 simpleLinkedList.delete(data);
+                end = System.nanoTime();
+                System.out.println("\nSimple - Elapsed Time: " + (end - start) + " ns");
+
+                start = System.nanoTime();
                 doublyLinkedList.delete(data);
+                end = System.nanoTime();
+                System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
                 break;
         }
     }
 
     public void searchElement(int data) {
+        long start, end;
+
+        start = System.nanoTime();
         int index = simpleLinkedList.search(data);
+        end = System.nanoTime();
+        System.out.println("\nSimple - Elapsed Time: " + (end - start) + " ns");
+
+        start = System.nanoTime();
         int index2 = doublyLinkedList.search(data);
+        end = System.nanoTime();
+        System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
+
         if (index < 0 && index2 < 0) {
-            System.out.println("\nAn element with value " + data + " was not found.");
+            System.out.println("An element with value " + data + " was not found.");
         }
         else {
-            System.out.println("\nThe element with value " + data + " is at the index " + index + " in the simply linked list.");
+            System.out.println("The element with value " + data + " is at the index " + index + " in the simply linked list.");
             System.out.println("The element with value " + data + " is at the index " + index2 + " in the doubly linked list.");
         }
     }
 
     public void traverseAndPrint() {
         System.out.println();
+        long start, end;
+
+        start = System.nanoTime();
         simpleLinkedList.traverse();
+        end = System.nanoTime();
+        System.out.println("Simple - Elapsed Time: " + (end - start) + " ns");
+
+        start = System.nanoTime();
         doublyLinkedList.forwardTraversal();
+        end = System.nanoTime();
+        System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
+
+        start = System.nanoTime();
         doublyLinkedList.backwardTraversal();
+        end = System.nanoTime();
+        System.out.println("Doubly - Elapsed Time: " + (end - start) + " ns");
     }
 
     public void printOptions() {
